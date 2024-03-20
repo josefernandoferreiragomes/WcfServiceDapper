@@ -1,10 +1,7 @@
-﻿using CustomerService.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using CustomerAPIStandard20;
+using CustomerService.Data;
 
-namespace CustomerSiteLite.Models
+namespace CustomerSiteCore.Models
 {
     public class CustomerModel
     {

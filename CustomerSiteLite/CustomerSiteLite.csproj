@@ -210,9 +210,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomerAPI\CustomerAPI.csproj">
-      <Project>{1cf9be01-bfa0-4061-9730-d4863cb41c18}</Project>
-      <Name>CustomerAPI</Name>
+    <ProjectReference Include="..\CustomerAPIStandard20\CustomerAPIStandard20.csproj">
+      <Project>{fa2c1af1-23fe-43b9-a78e-c78dea572ad6}</Project>
+      <Name>CustomerAPIStandard20</Name>
     </ProjectReference>
     <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
       <Project>{0A0B8E63-C57A-4757-B387-205E12D1668A}</Project>
