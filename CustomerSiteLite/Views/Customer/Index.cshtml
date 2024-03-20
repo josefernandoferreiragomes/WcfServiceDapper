@@ -1,0 +1,23 @@
+﻿@model CustomerSiteLite.Models.CustomerModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Customers</h1>
+    </section>
+    <div class="page-item">
+        <div class="row bg-info">
+            <div class="col-md-6 active">CustomerName</div>
+            <div class="col-md-6 active">CustomerId</div>
+        </div>
+        @foreach (var customer in Model.CustomerList)
+        {
+            <div class="row">
+                <div class="col-md-6"> @customer.CustomerName</div>
+                <div class="col-md-6">@customer.CustomerId</div>
+            </div>
+        }
+    </div>
+</main>
