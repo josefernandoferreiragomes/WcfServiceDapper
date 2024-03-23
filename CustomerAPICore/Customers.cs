@@ -6,40 +6,22 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using ServiceReference;
 
-namespace CustomerAPIStandard20
+namespace CustomerAPICore
 {
     public class Customers
     {
-        public List<Customer> GetCustomers(string nameSearchPattern)
-        {
-            List<Customer> customersStandard = new List<Customer> ();
-
-            //in .NET Standard 2.0 it needs to implement IDisposable(), to be used as a using(){}
-            //var client = new CustomersClient(
-            //    new System.ServiceModel.Channels.CustomBinding() { },
-            //    System.ServiceModel.EndpointAddressBuilder(){ }
-
-            //    );
+        public List<Customer> GetCustomers(string? customerName)
+        {                        
             var client = new CustomersClient();
 
             var customers = client.CustomerListAsync(
             new Customer()
-            {
-                CustomerName = nameSearchPattern
-            }).Result;
-            
-            //mapper
-            foreach (var customer in customers)
-            {
-                Customer customerStandard = new Customer()
                 {
-                    CustomerName = customer.CustomerName,
-                    CustomerId = customer.CustomerId
-                };
-                customersStandard.Add( customerStandard );
-            }
+                    CustomerName = customerName == null ? "" : customerName
+                }
+            ).Result.ToList();                       
 
-            return customersStandard;
+            return customers;
         }
     }
 }

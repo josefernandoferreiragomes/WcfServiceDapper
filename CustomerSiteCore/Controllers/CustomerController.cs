@@ -21,6 +21,8 @@ namespace CustomerSiteCore.Controllers
         public IActionResult Index()
         {
             var model = new CustomerModel();
+            model.CustomerName = ""; // initial search query
+
             return View(model);
         }
         //public ActionResult Index()

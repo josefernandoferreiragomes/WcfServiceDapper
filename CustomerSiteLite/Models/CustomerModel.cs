@@ -1,21 +1,33 @@
-﻿using CustomerService.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 
 namespace CustomerSite.Models
 {
     public class CustomerModel
     {
-        private List<CustomerStandard> _customerList;
-        public List<CustomerStandard> CustomerList
+        private HttpClient _httpclient;
+
+        public string CustomerName { get; set; }
+
+        private List<Customer> _customerList;        
+
+        public List<Customer> CustomerList
         {
             get
             {
                 if (_customerList == null)
                 {
-                    _customerList = new CustomerAPIStandard20.Customers().GetCustomers("");
+                    _httpclient = new HttpClient();
+                    _httpclient.BaseAddress = new Uri("http://localhost:5015/Api/Customer/");
+
+                    var client = new CustomerApiCoreProxy(
+                        "",
+                        _httpclient
+                        );
+                    _customerList = client.CustomerAsync(CustomerName).Result.ToList();
                 }
                 return _customerList;
             }

@@ -19,6 +19,8 @@
 
 	https://learn.microsoft.com/en-us/dotnet/core/additional-tools/dotnet-svcutil-guide?tabs=dotnetsvcutil2x
 
+	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
+
 ### Migrate to .NET Standard 2.0
 	https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-migrate-from-dotnet-framework-to-dotnet-standard
 

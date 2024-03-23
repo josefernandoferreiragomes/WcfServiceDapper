@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj" />
+    <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.Deprecated.csproj" />
   </ItemGroup>
 
 </Project>
