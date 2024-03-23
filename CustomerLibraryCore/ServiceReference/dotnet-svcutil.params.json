@@ -1,0 +1,15 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "2.1.0",
+  "options": {
+    "inputs": [
+      "http://localhost:62341/Customers.svc?wsdl"
+    ],
+    "namespaceMappings": [
+      "*, ServiceReference"
+    ],
+    "outputFile": "CustomersProxyCore.cs",
+    "targetFramework": "net8.0",
+    "typeReuseMode": "All"
+  }
+}

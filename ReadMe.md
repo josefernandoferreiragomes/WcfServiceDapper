@@ -13,6 +13,12 @@
 	References:
 	https://www.codeproject.com/Articles/786601/Ways-to-generate-proxy-for-WCF-Service
 
+### Generate WCF Proxy Core
+	dotnet tool install --global dotnet-svcutil
+	dotnet-svcutil http://localhost:62341/Customers.svc?wsdl --outputFile CustomersProxyCore.cs	
+
+	https://learn.microsoft.com/en-us/dotnet/core/additional-tools/dotnet-svcutil-guide?tabs=dotnetsvcutil2x
+
 ### Migrate to .NET Standard 2.0
 	https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-migrate-from-dotnet-framework-to-dotnet-standard
 
@@ -27,6 +33,13 @@
 	https://learn.microsoft.com/en-us/dotnet/core/porting/
 	Install-Package System.Private.ServiceModel -Version 4.7.0
 	https://stackoverflow.com/questions/73316508/error-platformnotsupportedexception-configuration-files-are-not-supported-or-h
+	
+	https://github.com/dotnet/standard/issues/781
+
+### WCFClient details for further reading
+	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
+	https://www.mytechramblings.com/posts/modernize-wcf-legacy-app-using-corewcf/
+
 
 ## Requirements
 	WCF

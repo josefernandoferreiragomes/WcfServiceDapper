@@ -1,12 +1,13 @@
 ﻿using CustomerAPIStandard20;
-using CustomerService.Data;
+using CustomerLibraryCore;
+using ServiceReference;
 
 namespace CustomerSiteCore.Models
 {
     public class CustomerModel
     {
-        private List<CustomerStandard> _customerList;
-        public List<CustomerStandard> CustomerList
+        private List<Customer> _customerList;
+        public List<Customer> CustomerList
         {
             get
             {

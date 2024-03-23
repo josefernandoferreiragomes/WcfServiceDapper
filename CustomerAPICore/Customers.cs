@@ -1,18 +1,18 @@
-﻿using CustomerService.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using ServiceReference;
 
 namespace CustomerAPIStandard20
 {
     public class Customers
     {
-        public List<CustomerStandard> GetCustomers(string nameSearchPattern)
+        public List<Customer> GetCustomers(string nameSearchPattern)
         {
-            List<CustomerStandard> customersStandard = new List<CustomerStandard> ();
+            List<Customer> customersStandard = new List<Customer> ();
 
             //in .NET Standard 2.0 it needs to implement IDisposable(), to be used as a using(){}
             //var client = new CustomersClient(
@@ -22,16 +22,16 @@ namespace CustomerAPIStandard20
             //    );
             var client = new CustomersClient();
 
-            var customers = client.CustomerList(
+            var customers = client.CustomerListAsync(
             new Customer()
             {
                 CustomerName = nameSearchPattern
-            }).ToList();
+            }).Result;
             
             //mapper
             foreach (var customer in customers)
             {
-                CustomerStandard customerStandard = new CustomerStandard()
+                Customer customerStandard = new Customer()
                 {
                     CustomerName = customer.CustomerName,
                     CustomerId = customer.CustomerId
