@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.APICore", "Custome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.ApiCore.Web", "CustomerWebAPICore\Customer.ApiCore.Web.csproj", "{427E80B1-5A45-4DBE-AFC4-9C6BAE50E7BD}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Customer.Data", "Customer.Data\Customer.Data.sqlproj", "{2077CF76-74E8-4E04-B1C7-252CE7BD6650}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Customer.Database", "Customer.Data\Customer.Database.sqlproj", "{2077CF76-74E8-4E04-B1C7-252CE7BD6650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

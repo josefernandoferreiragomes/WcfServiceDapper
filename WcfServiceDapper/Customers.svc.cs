@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using CustomerService.Data;
+using System.Configuration;
 
 namespace CustomerService
 {
@@ -20,13 +21,13 @@ namespace CustomerService
         {
             List<Customer> result = new List<Customer>();
             // using Dapper;
-            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=LoanManagementDB;Integrated Security=true;TrustServerCertificate=True";
+            var connectionString = ConfigurationManager.ConnectionStrings["CustomersDB"].ConnectionString;//"Server=(localdb)\\MSSQLLocalDB;Initial Catalog=LoanManagementDB;Integrated Security=true;TrustServerCertificate=True";
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
             {
                 // Create a query that retrieves all books with an author name of "John Smith"    
                 //TO BE REFACTURED WITH PATTERN AND SECURITY FEATURES
-                var sql = $"SELECT TOP 15 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
+                var sql = $"SELECT TOP 17 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
 
                 // Use the Query method to execute the query and return a list of objects    
                 result = connection.Query<Customer>(
