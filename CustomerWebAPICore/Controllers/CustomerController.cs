@@ -7,12 +7,14 @@ namespace CustomerWebAPICore.Controllers
     [ApiController]
     [Route("[controller]")]
     public class CustomerController : ControllerBase
-    {              
-
+    {        
         private readonly ILogger<CustomerController> _logger;
 
-        public CustomerController(ILogger<CustomerController> logger)
+        private readonly IConfiguration _configuration;      
+
+        public CustomerController(ILogger<CustomerController> logger, IConfiguration configuration)
         {
+            _configuration = configuration;
             _logger = logger;
         }
 
@@ -21,7 +23,7 @@ namespace CustomerWebAPICore.Controllers
         {
             List<Customer> customers    = new List<Customer>();
 
-            customers = new Customers().GetCustomers(customerName);  
+            customers = new Customers(_configuration).GetCustomers(customerName);  
             return customers;
         }
     }

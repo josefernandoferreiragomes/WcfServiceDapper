@@ -21,7 +21,7 @@ namespace CustomerService
         {
             List<Customer> result = new List<Customer>();
             // using Dapper;
-            var connectionString = ConfigurationManager.ConnectionStrings["CustomersDB"].ConnectionString;//"Server=(localdb)\\MSSQLLocalDB;Initial Catalog=LoanManagementDB;Integrated Security=true;TrustServerCertificate=True";
+            var connectionString = ConfigurationManager.ConnectionStrings["CustomersDB"].ConnectionString;
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
             {

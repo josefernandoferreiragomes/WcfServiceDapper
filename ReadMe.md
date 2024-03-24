@@ -32,6 +32,10 @@
 	
 	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
 
+### Read appsettings.json
+	https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
+	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0
+
 ### Further reading
 	WCFClient details
 	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
