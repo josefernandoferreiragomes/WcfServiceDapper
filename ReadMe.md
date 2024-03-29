@@ -71,3 +71,5 @@
 	
 	https://github.com/dotnet/standard/issues/781
 
+### Free public APIs for testing purposes
+	https://apipheny.io/free-api/

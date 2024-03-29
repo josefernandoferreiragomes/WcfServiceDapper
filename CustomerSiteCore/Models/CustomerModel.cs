@@ -1,4 +1,4 @@
-﻿using CustomerAPICore;
+﻿using Customer.APICore;
 using ServiceReference;
 
 namespace CustomerSiteCore.Models
@@ -8,20 +8,25 @@ namespace CustomerSiteCore.Models
         private readonly IConfiguration Configuration;
         public string CustomerName { get; set; }
 
-        private List<Customer>? _customerList;
+        private List<ServiceReference.Customer>? _customerList;
 
         public CustomerModel(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public List<Customer> CustomerList
+        public List<ServiceReference.Customer> CustomerList
         {
             get
             {
                 if (_customerList == null)
                 {
-                    _customerList = new CustomerAPICore.Customers(Configuration).GetCustomers(CustomerName);
+                    _customerList = new Customer.APICore.Customers(Configuration).GetCustomers(
+                        new ServiceReference.Customer()
+                        {
+                           CustomerName = CustomerName
+                        }
+                    );
                 }
                 return _customerList;
             }

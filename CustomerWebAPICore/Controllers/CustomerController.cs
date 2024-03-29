@@ -1,4 +1,4 @@
-using CustomerAPICore;
+using Customer.APICore;
 using Microsoft.AspNetCore.Mvc;
 using ServiceReference;
 
@@ -19,11 +19,20 @@ namespace CustomerWebAPICore.Controllers
         }
 
         [HttpGet(Name = "Customer")]
-        public IEnumerable<Customer> Get(string? customerName)
+        public IEnumerable<ServiceReference.Customer> Get(string? customerName)
         {
-            List<Customer> customers    = new List<Customer>();
+            List<ServiceReference.Customer> customers = new List<ServiceReference.Customer>();
 
-            customers = new Customers(_configuration).GetCustomers(customerName);  
+            var customersResult = new Customers(_configuration).GetCustomers(
+                new ServiceReference.Customer()
+                {
+                    CustomerName = customerName
+                }
+            );
+            if( customersResult != null && customersResult!=null)
+            {
+                customers = customersResult;
+            }
             return customers;
         }
     }
