@@ -84,6 +84,7 @@ namespace Customer.APICore
             return result;
         }
 
+        //Delegate example
         public ApiCoreResult<List<ServiceReference.Customer>> GetCustomersGeneric(ServiceReference.Customer customerRequest)
         => Invoke(customerRequest, () => _serviceClient.CustomerListAsync(customerRequest).Result.ToList());
 
@@ -115,6 +116,10 @@ namespace Customer.APICore
             catch (Exception exp)
             {
                 result.Errors.Add(exp.Message);
+            }
+            finally
+            {
+                
             }
             return result;
         }

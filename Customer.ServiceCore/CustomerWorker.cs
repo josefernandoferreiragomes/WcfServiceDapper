@@ -1,28 +1,22 @@
-﻿using Dapper;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using CustomerService.Data;
-using System.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
+using Dapper;
 using DapperExtensions;
 
-namespace CustomerService
+namespace Customer.DataLayerCore
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Customers : ICustomers
-    {       
-
+    public class CustomerWorker : ICustomerWorker
+    {
+        private IConfiguration _configuration;
+        public CustomerWorker(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public List<Customer> GetDataFromDatabaseWithDapper(Customer customer)
         {
             List<Customer> result = new List<Customer>();
             // using Dapper;
-            var connectionString = ConfigurationManager.ConnectionStrings["CustomersDB"].ConnectionString;
+            var connectionString = _configuration["CustomersDB"];
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -32,7 +26,7 @@ namespace CustomerService
 
                 // Use the Query method to execute the query and return a list of objects    
                 result = connection.Query<Customer>(
-                    sql, 
+                    sql,
                     new { customerName = customer.CustomerName }
                     ).ToList();
             }
@@ -44,7 +38,7 @@ namespace CustomerService
         {
             List<Customer> result = new List<Customer>();
             // using Dapper;
-            var connectionString = ConfigurationManager.ConnectionStrings["CustomersDB"].ConnectionString;
+            var connectionString = _configuration["CustomersDB"];
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -54,7 +48,7 @@ namespace CustomerService
 
                 // Use the Query method to execute the query and return a list of objects    
                 result = connection.GetList<Customer>(customer).ToList();
-                    //.Query<Customer>(
+                //.Query<Customer>(
                 //    sql,
                 //    new { customerName = customer.CustomerName }
                 //    ).ToList();
@@ -68,7 +62,7 @@ namespace CustomerService
 
         public List<Customer> CustomerList(Customer customer)
         {
-            List <Customer> customers = new List<Customer>();
+            List<Customer> customers = new List<Customer>();
             if (customer == null)
             {
                 throw new ArgumentNullException("Customer");

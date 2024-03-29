@@ -7,13 +7,15 @@
 	API
 		Core 8
 		4.8 upgraded to Standard 2.0 !!! Deprecated
+		Delegate
 	Site
 		4.8
 	Site
 		Core 8
 
-### Connect to SQL Server Database
+### Connect to SQL Server Database with Dapper and DapperExtensions
 	https://www.learndapper.com/database-providers
+	https://github.com/tmsmith/Dapper-Extensions
 
 ### Generate WCF Proxy Core
 	install dotnet-svcutil:
@@ -34,12 +36,18 @@
 
 ### Read appsettings.json
 	https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
-	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0
+	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0	
+
+### CoreWCF
+	https://devblogs.microsoft.com/dotnet/corewcf-1-1-0-and-project-templates/
+	PM> dotnet new --install CoreWCF.Templates
+	https://learn.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-wcf
 
 ### Further reading
 	WCFClient details
 	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
 	https://www.mytechramblings.com/posts/modernize-wcf-legacy-app-using-corewcf/
+	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
 
 ### Generate WCF Proxy (Framework)
 #### !!! Deprecated !!!
