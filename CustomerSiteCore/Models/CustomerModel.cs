@@ -21,12 +21,18 @@ namespace CustomerSiteCore.Models
             {
                 if (_customerList == null)
                 {
-                    _customerList = new Customer.APICore.Customers(Configuration).GetCustomers(
+                    //_customerList = new Customer.APICore.Customers(Configuration).GetCustomers(
+                    //    new ServiceReference.Customer()
+                    //    {
+                    //       CustomerName = CustomerName
+                    //    }
+                    //);
+                    _customerList = new Customer.APICore.Customers(Configuration).GetCustomersGeneric(
                         new ServiceReference.Customer()
                         {
-                           CustomerName = CustomerName
+                            CustomerName = CustomerName
                         }
-                    );
+                    )?.Result;
                 }
                 return _customerList;
             }
