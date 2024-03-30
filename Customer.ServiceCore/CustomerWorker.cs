@@ -12,9 +12,9 @@ namespace Customer.DataLayerCore
         {
             _configuration = configuration;
         }
-        public List<Customer> GetDataFromDatabaseWithDapper(Customer customer)
+        public List<CustomerCore> GetDataFromDatabaseWithDapper(CustomerCore customer)
         {
-            List<Customer> result = new List<Customer>();
+            List<CustomerCore> result = new List<CustomerCore>();
             // using Dapper;
             var connectionString = _configuration["CustomersDB"];
             // Connect to the database 
@@ -25,7 +25,7 @@ namespace Customer.DataLayerCore
                 var sql = $"SELECT TOP 17 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
 
                 // Use the Query method to execute the query and return a list of objects    
-                result = connection.Query<Customer>(
+                result = connection.Query<CustomerCore>(
                     sql,
                     new { customerName = customer.CustomerName }
                     ).ToList();
@@ -34,9 +34,9 @@ namespace Customer.DataLayerCore
 
         }
 
-        public List<Customer> GetDataFromDatabaseWithDapperNative(Customer customer)
+        public List<CustomerCore> GetDataFromDatabaseWithDapperNative(CustomerCore customer)
         {
-            List<Customer> result = new List<Customer>();
+            List<CustomerCore> result = new List<CustomerCore>();
             // using Dapper;
             var connectionString = _configuration["CustomersDB"];
             // Connect to the database 
@@ -47,7 +47,7 @@ namespace Customer.DataLayerCore
                 //var sql = $"SELECT TOP 17 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
 
                 // Use the Query method to execute the query and return a list of objects    
-                result = connection.GetList<Customer>(customer).ToList();
+                result = connection.GetList<CustomerCore>(customer).ToList();
                 //.Query<Customer>(
                 //    sql,
                 //    new { customerName = customer.CustomerName }
@@ -60,9 +60,9 @@ namespace Customer.DataLayerCore
 
         }
 
-        public List<Customer> CustomerList(Customer customer)
+        public List<CustomerCore> CustomerList(CustomerCore customer)
         {
-            List<Customer> customers = new List<Customer>();
+            List<CustomerCore> customers = new List<CustomerCore>();
             if (customer == null)
             {
                 throw new ArgumentNullException("Customer");

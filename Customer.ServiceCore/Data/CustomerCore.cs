@@ -7,7 +7,7 @@ using System.Web;
 namespace Customer.DataLayerCore
 {
     [DataContract]
-    public class Customer
+    public class CustomerCore
     {
         [DataMember]
         public int CustomerId { get; set; }

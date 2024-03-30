@@ -7,68 +7,65 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace CustomerServiceCoreProxy
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/Customer.ServiceCoreWcf")]
-    public partial class CompositeType : object
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerCore", Namespace="http://schemas.datacontract.org/2004/07/Customer.DataLayerCore")]
+    public partial class CustomerCore : object
     {
         
-        private bool BoolValueField;
+        private int CustomerIdField;
         
-        private string StringValueField;
+        private string CustomerNameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue
+        public int CustomerId
         {
             get
             {
-                return this.BoolValueField;
+                return this.CustomerIdField;
             }
             set
             {
-                this.BoolValueField = value;
+                this.CustomerIdField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue
+        public string CustomerName
         {
             get
             {
-                return this.StringValueField;
+                return this.CustomerNameField;
             }
             set
             {
-                this.StringValueField = value;
+                this.CustomerNameField = value;
             }
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ICustomerServiceCore")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CustomerServiceCoreProxy.ICustomerServiceCore")]
     public interface ICustomerServiceCore
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerServiceCore/GetData", ReplyAction="http://tempuri.org/ICustomerServiceCore/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerServiceCore/GetDataUsingDataContract", ReplyAction="http://tempuri.org/ICustomerServiceCore/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerServiceCore/CustomerList", ReplyAction="http://tempuri.org/ICustomerServiceCore/CustomerListResponse")]
+        System.Threading.Tasks.Task<CustomerServiceCoreProxy.CustomerCore[]> CustomerListAsync(CustomerServiceCoreProxy.CustomerCore customer);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public interface ICustomerServiceCoreChannel : ServiceReference1.ICustomerServiceCore, System.ServiceModel.IClientChannel
+    public interface ICustomerServiceCoreChannel : CustomerServiceCoreProxy.ICustomerServiceCore, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class CustomerServiceCoreClient : System.ServiceModel.ClientBase<ServiceReference1.ICustomerServiceCore>, ServiceReference1.ICustomerServiceCore
+    public partial class CustomerServiceCoreClient : System.ServiceModel.ClientBase<CustomerServiceCoreProxy.ICustomerServiceCore>, CustomerServiceCoreProxy.ICustomerServiceCore
     {
         
         /// <summary>
@@ -111,14 +108,9 @@ namespace ServiceReference1
         {
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value)
+        public System.Threading.Tasks.Task<CustomerServiceCoreProxy.CustomerCore[]> CustomerListAsync(CustomerServiceCoreProxy.CustomerCore customer)
         {
-            return base.Channel.GetDataAsync(value);
-        }
-        
-        public System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite)
-        {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
+            return base.Channel.CustomerListAsync(customer);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

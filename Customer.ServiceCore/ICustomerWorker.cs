@@ -8,6 +8,6 @@ namespace Customer.DataLayerCore
 {
     public interface ICustomerWorker
     {
-        List<Customer> CustomerList(Customer customer);
+        List<CustomerCore> CustomerList(CustomerCore customer);
     }
 }

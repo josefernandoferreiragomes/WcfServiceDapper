@@ -7,23 +7,24 @@ using System.ServiceModel;
 using ServiceReference;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using CustomerServiceCoreProxy;
 
 namespace Customer.APICore
 {
     public class Customers
     {
-        private IConfiguration _configuration;
+        private IConfiguration _customerServiceConfiguration;
         private BasicHttpBinding _basicHttpBinding;
-        private EndpointAddress _endpointAddress;
-        private CustomersClient _serviceClient;
+        private EndpointAddress _customerServiceEndpointAddress;
+        private ServiceReference.CustomersClient _serviceClient;
 
         public Customers(IConfiguration configuration)
         {
-            _configuration = configuration;
-            var section = _configuration["CustomerApiClient"];
-            _endpointAddress = new EndpointAddress(section);
-            _basicHttpBinding = new BasicHttpBinding();
-            _serviceClient = new CustomersClient(_basicHttpBinding, _endpointAddress);
+            _customerServiceConfiguration = configuration;
+            var customerServiceSection = _customerServiceConfiguration["CustomerServiceClient"];            
+            _customerServiceEndpointAddress = new EndpointAddress(customerServiceSection);            
+            _basicHttpBinding = new BasicHttpBinding();            
+            _serviceClient = new ServiceReference.CustomersClient(_basicHttpBinding, _customerServiceEndpointAddress);
         }
 
         public List<ServiceReference.Customer> GetCustomers(ServiceReference.Customer customerRequest)
@@ -37,7 +38,7 @@ namespace Customer.APICore
 
             //var endpoint = new EndpointAddress("http://localhost:62341/Customers.svc");
 
-            var section = _configuration["CustomerApiClient"];
+            var section = _customerServiceConfiguration["CustomerServiceClient"];
             var endpoint = new EndpointAddress(section);
             var binding = new BasicHttpBinding();
 
@@ -55,7 +56,7 @@ namespace Customer.APICore
             return result;
         }
 
-        public ApiCoreResult<List<ServiceReference.Customer>> GetCustomersCore(ServiceReference.Customer customerRequest)
+        public ApiCoreResult<List<ServiceReference.Customer>> GetCustomersCoreDeprecated(ServiceReference.Customer customerRequest)
         {
             ApiCoreResult<List<ServiceReference.Customer>> result = new ApiCoreResult<List<ServiceReference.Customer>>();
 
@@ -66,7 +67,7 @@ namespace Customer.APICore
 
             //var endpoint = new EndpointAddress("http://localhost:62341/Customers.svc");
 
-            var section = _configuration["CustomerApiClient"];
+            var section = _customerServiceConfiguration["CustomerServiceClient"];
             var endpoint = new EndpointAddress(section);
             var binding = new BasicHttpBinding();
 
@@ -83,7 +84,7 @@ namespace Customer.APICore
             }
             return result;
         }
-
+        
         //Delegate example
         public ApiCoreResult<List<ServiceReference.Customer>> GetCustomersGeneric(ServiceReference.Customer customerRequest)
         => Invoke(customerRequest, () => _serviceClient.CustomerListAsync(customerRequest).Result.ToList());

@@ -5,8 +5,9 @@ var builder = WebApplication.CreateBuilder();
 builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
-//Custom DI
-//builder.Services.AddSingleton<ICustomerWorker, CustomerWorker>();
+
+//Add service client to DI
+builder.Services.AddSingleton<ICustomerWorker, CustomerWorker>();
 
 //default url : http://localhost:5153/CustomerServiceCore.svc
 var app = builder.Build();

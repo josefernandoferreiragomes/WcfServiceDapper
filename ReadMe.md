@@ -42,6 +42,9 @@
 	https://devblogs.microsoft.com/dotnet/corewcf-1-1-0-and-project-templates/
 	PM> dotnet new --install CoreWCF.Templates
 	https://learn.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-wcf
+	Proxy:
+	cmd admin, on LibraryCore folder:
+	dotnet-svcutil http://localhost:5153/CustomerServiceCore.svc  --namespace "*,CustomerServiceCoreProxy" --outputFile "CustomerServiceCoreProxy.cs"
 
 ### Further reading
 	WCFClient details

@@ -3,10 +3,10 @@
   "version": "2.1.0",
   "options": {
     "inputs": [
-      "http://localhost:5153/CustomerServiceCore.svc?wsdl"
+      "http://localhost:5153/CustomerServiceCore.svc"
     ],
     "namespaceMappings": [
-      "*, ServiceReference1"
+      "*, CustomerServiceCoreProxy"
     ],
     "outputFile": "CustomerServiceCoreProxy.cs",
     "references": [

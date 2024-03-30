@@ -12,7 +12,7 @@ namespace CustomerSite.Controllers
         public ActionResult Index()
         {
             var model = new CustomerModel();
-            model.CustomerName = ""; // initial search
+            model.CustomerName = "a"; // initial search
 
             return View(model);
         }
