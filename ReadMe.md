@@ -39,6 +39,8 @@
 	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0	
 
 ### CoreWCF
+	https://github.com/CoreWCF/samples/tree/main/Scenarios/Logging-and-Dependency-Injection
+	https://github.com/CoreWCF/CoreWCF/blob/main/Documentation/Walkthrough.md
 	https://devblogs.microsoft.com/dotnet/corewcf-1-1-0-and-project-templates/
 	PM> dotnet new --install CoreWCF.Templates
 	https://learn.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-wcf
@@ -50,6 +52,8 @@
 	WCFClient details
 	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
 	https://www.mytechramblings.com/posts/modernize-wcf-legacy-app-using-corewcf/
+	https://medium.com/@palchouhan/upgrading-a-wcf-service-to-net-6-with-corewcf-cf3a4f569b61
+	https://aws.amazon.com/blogs/modernizing-with-aws/wcf-service-to-corewcf/
 	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
 
 ### Generate WCF Proxy (Framework)
