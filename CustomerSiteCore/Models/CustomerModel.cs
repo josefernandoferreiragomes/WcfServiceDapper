@@ -8,14 +8,14 @@ namespace CustomerSiteCore.Models
         private readonly IConfiguration Configuration;
         public string CustomerName { get; set; }
 
-        private List<ServiceReference.Customer>? _customerList;
+        private List<CustomerServiceCoreProxy.CustomerCore>? _customerList;
 
         public CustomerModel(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public List<ServiceReference.Customer> CustomerList
+        public List<CustomerServiceCoreProxy.CustomerCore> CustomerList
         {
             get
             {
@@ -27,12 +27,20 @@ namespace CustomerSiteCore.Models
                     //       CustomerName = CustomerName
                     //    }
                     //);
-                    _customerList = new Customer.APICore.Customers(Configuration).GetCustomersGeneric(
-                        new ServiceReference.Customer()
+                    //_customerList = new Customer.APICore.Customers(Configuration).GetCustomersGeneric(
+                    //    new ServiceReference.Customer()
+                    //    {
+                    //        CustomerName = CustomerName
+                    //    }
+                    //)?.Result;
+                    
+                    _customerList = new Customer.APICore.CustomerCores(Configuration).GetCustomersCore(
+                        new CustomerServiceCoreProxy.CustomerCore()
                         {
                             CustomerName = CustomerName
                         }
                     )?.Result;
+
                 }
                 return _customerList;
             }

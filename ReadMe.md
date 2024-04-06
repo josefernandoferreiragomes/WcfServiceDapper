@@ -1,5 +1,10 @@
 # Customer web site example (SQL Server, .Net Framework 4.8, .Net Core 8, Dapper, API, WebAPI)
 
+## TODO
+	Consume CoreWCF in both sites
+	Rename old WCF to deprecated
+	Summarize steps taken
+
 ## Requirements
 	WCF
 		4.8
@@ -88,3 +93,39 @@
 
 ### Free public APIs for testing purposes
 	https://apipheny.io/free-api/
+
+## Project steps
+### 1. Create examples of: 
+	Customers Database, in SQLLocalDB 
+	DAL, in .net framework  
+	WCF Service, in .net framework 
+	Library containing WCF proxy, in .net framework  
+	API library, in .net framework 
+	Web site, in .net framework 
+	Web site, in .net core 
+
+### 2. Attempt to migrate API to .Net Standard 2.0, but it didn't work for .Net Core Web Site 
+	Created a new .net Standard 2.0 API library project 
+	Copied code files from legacy project 
+	.Net framework web site consumed the new API, and it worked 
+	Tried to consume new API from .Net Core Web site, but the proxy inside the library is not compatible. As it is not possible to consume .net framework proxy from .net core, neither possible to consume .net core proxy from .net framework, which was confirmed by googling about the problem. 
+
+### 3 migrate Library and API to .net core 
+	Create new .Net Core Library project 
+	Generate proxy using dotnet-svcutil 
+	Create new .Net Core API project, to be consumed by . Net Core website, through project reference 
+	Create new Web API 
+	In .net framework web site, create new gRPC API client, to consume the new Web API 
+
+### 4 migrate WCF service to CoreWCF 
+	Create new .net core DAL project 
+	Copy DAL code files from legacy WCF service to the new project 
+	Add nuget packages for Dapper and other dependencies 
+	Install CoreWCF project template 
+	Create new CoreWCF project
+	Copy service interface and service class from legacy WCF to new project 
+	Add reference to DataLayer Core project 
+	Add startup code to read appsettings.json 
+	Copy connection strings from legacy WCF web.config to new appsettings.json 
+	In Library core, generate new proxy, using dotnet-svcutil for consumption of new CoreWCF  
+	In framework web site, update API Client code 

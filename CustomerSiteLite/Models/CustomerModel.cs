@@ -12,9 +12,29 @@ namespace CustomerSite.Models
 
         public string CustomerName { get; set; }
 
-        private List<Customer> _customerList;        
+        //private List<Customer> _customerList;
+        //public List<Customer> CustomerList
+        //{
+        //    get
+        //    {
+        //        if (_customerList == null)
+        //        {
+        //            _httpclient = new HttpClient();
+        //            _httpclient.BaseAddress = new Uri("http://localhost:5015/Api/Customer/");
 
-        public List<Customer> CustomerList
+        //            var client = new CustomerApiCoreProxy(
+        //                "",
+        //                _httpclient
+        //                );
+        //            _customerList = client.CustomerAsync(CustomerName).Result.ToList();
+        //        }
+        //        return _customerList;
+        //    }
+        //}
+        
+        private List<CustomerCore> _customerList;
+
+        public List<CustomerCore> CustomerList
         {
             get
             {
@@ -27,11 +47,10 @@ namespace CustomerSite.Models
                         "",
                         _httpclient
                         );
-                    _customerList = client.CustomerAsync(CustomerName).Result.ToList();
+                    _customerList = client.CustomerCoreAsync(CustomerName).Result.ToList();
                 }
                 return _customerList;
             }
         }
-
     }
 }
