@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Customer.Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -77,9 +78,9 @@ namespace CustomerSite.Models
         //}
 
         //teste command API proxy
-        private List<ClientApiClient.CustomerCore> _customerList;
+        private List<Customer.Library.CustomerCore> _customerList;
 
-        public List<ClientApiClient.CustomerCore> CustomerList
+        public List<Customer.Library.CustomerCore> CustomerList
         {
             get
             {
@@ -97,7 +98,7 @@ namespace CustomerSite.Models
                     var httpclient = new HttpClient();
                     //httpclient.BaseAddress = new Uri(new Uri("http://localhost:5015/Api/Customer/"), "http://localhost:5015/Api/Customer/");
                     httpclient.BaseAddress = new Uri("http://localhost:5015/Api/Customer/");
-                    var client2 = new ClientApiClient.Client(
+                    var client2 = new ClientApiClient(
                         "/",
                         httpclient
                         );

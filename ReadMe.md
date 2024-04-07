@@ -135,6 +135,8 @@
 	Create new nswag docuemnt, using command: nswag new
 	Generate client code using web api core url: http://localhost:5015/swagger/v1/swagger.json
 	 navigate to folder:
-	 c:\...\WcfServiceDapper\CustomerLibrary>
-	 command: nswag openapi2csclient /input:http://localhost:5015/swagger/v1/swagger.json /classname:MyServiceClient /namespace:MyNamespace /output:ClientApiClient.cs
+	  c:\...\WcfServiceDapper\CustomerLibrary>
+	 command:
+	  nswag openapi2csclient /input:http://localhost:5015/swagger/v1/swagger.json /classname:ClientApiClient /namespace:Customer.Library /output:ClientApiClient.cs
+	 Problems related to .net framework nswag version:
 	 https://developercommunity.visualstudio.com/t/httpclient-not-smart-about-combining-baseaddress-w/1592519

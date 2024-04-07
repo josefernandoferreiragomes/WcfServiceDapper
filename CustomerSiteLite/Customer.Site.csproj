@@ -132,7 +132,6 @@
     </Compile>
     <Compile Include="Models\CustomerModel.Deprecated.cs" />
     <Compile Include="Models\CustomerModel.cs" />
-    <Compile Include="OpenAPIs\swagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +160,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="OpenAPIs\swagger.json">
-      <Namespace>CustomerSite</Namespace>
-      <ClassName>CustomerApiCoreProxy</ClassName>
-      <CodeGenerator>NSwagCSharp</CodeGenerator>
-      <SourceUri>http://localhost:5015/swagger/v1/swagger.json</SourceUri>
-    </Content>
     <Content Include="nswag.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
