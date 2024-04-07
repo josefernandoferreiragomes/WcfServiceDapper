@@ -46,10 +46,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomerLibrary\Customer.Library.Deprecated.csproj">
+    <ProjectReference Include="..\CustomerLibrary\Customer.Library.csproj">
       <Project>{0a0b8e63-c57a-4757-b387-205e12d1668a}</Project>
-      <Name>Customer.Library.Deprecated</Name>
+      <Name>Customer.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

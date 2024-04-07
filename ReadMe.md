@@ -129,3 +129,12 @@
 	Copy connection strings from legacy WCF web.config to new appsettings.json 
 	In Library core, generate new proxy, using dotnet-svcutil for consumption of new CoreWCF  
 	In framework web site, update API Client code 
+
+### Generate compatibiliy web api client code
+	Install NSwag in Legacy Library with NuGet
+	Create new nswag docuemnt, using command: nswag new
+	Generate client code using web api core url: http://localhost:5015/swagger/v1/swagger.json
+	 navigate to folder:
+	 c:\...\WcfServiceDapper\CustomerLibrary>
+	 command: nswag openapi2csclient /input:http://localhost:5015/swagger/v1/swagger.json /classname:MyServiceClient /namespace:MyNamespace /output:ClientApiClient.cs
+	 https://developercommunity.visualstudio.com/t/httpclient-not-smart-about-combining-baseaddress-w/1592519
