@@ -1,5 +1,5 @@
 ﻿using Customer.APICore;
-using ServiceReference;
+using Customer.LibraryCore.ServiceReferenceCore;
 
 namespace CustomerSiteCore.Models
 {
@@ -8,34 +8,34 @@ namespace CustomerSiteCore.Models
         private readonly IConfiguration Configuration;
         public string CustomerName { get; set; }
 
-        private List<CustomerServiceCoreProxy.CustomerCore>? _customerList;
+        private List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>? _customerList;
 
         public CustomerModel(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public List<CustomerServiceCoreProxy.CustomerCore> CustomerList
+        public List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore> CustomerList
         {
             get
             {
                 if (_customerList == null)
                 {
                     //_customerList = new Customer.APICore.Customers(Configuration).GetCustomers(
-                    //    new ServiceReference.Customer()
+                    //    new Customer.LibraryCore.ServiceReferenceCore.Customer()
                     //    {
                     //       CustomerName = CustomerName
                     //    }
                     //);
                     //_customerList = new Customer.APICore.Customers(Configuration).GetCustomersGeneric(
-                    //    new ServiceReference.Customer()
+                    //    new Customer.LibraryCore.ServiceReferenceCore.Customer()
                     //    {
                     //        CustomerName = CustomerName
                     //    }
                     //)?.Result;
                     
-                    _customerList = new Customer.APICore.CustomerCores(Configuration).GetCustomersCore(
-                        new CustomerServiceCoreProxy.CustomerCore()
+                    _customerList = new Customer.APICore.CustomersCore(Configuration).GetCustomersCore(
+                        new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                         {
                             CustomerName = CustomerName
                         }

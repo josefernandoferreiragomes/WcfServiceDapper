@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CustomerServiceCoreProxy
+namespace Customer.LibraryCore.ServiceReferenceCore
 {
     using System.Runtime.Serialization;
     
@@ -50,22 +50,22 @@ namespace CustomerServiceCoreProxy
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CustomerServiceCoreProxy.ICustomerServiceCore")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Customer.LibraryCore.ServiceReferenceCore.ICustomerServiceCore")]
     public interface ICustomerServiceCore
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerServiceCore/CustomerList", ReplyAction="http://tempuri.org/ICustomerServiceCore/CustomerListResponse")]
-        System.Threading.Tasks.Task<CustomerServiceCoreProxy.CustomerCore[]> CustomerListAsync(CustomerServiceCoreProxy.CustomerCore customer);
+        System.Threading.Tasks.Task<Customer.LibraryCore.ServiceReferenceCore.CustomerCore[]> CustomerListAsync(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customer);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public interface ICustomerServiceCoreChannel : CustomerServiceCoreProxy.ICustomerServiceCore, System.ServiceModel.IClientChannel
+    public interface ICustomerServiceCoreChannel : Customer.LibraryCore.ServiceReferenceCore.ICustomerServiceCore, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class CustomerServiceCoreClient : System.ServiceModel.ClientBase<CustomerServiceCoreProxy.ICustomerServiceCore>, CustomerServiceCoreProxy.ICustomerServiceCore
+    public partial class CustomerServiceCoreClient : System.ServiceModel.ClientBase<Customer.LibraryCore.ServiceReferenceCore.ICustomerServiceCore>, Customer.LibraryCore.ServiceReferenceCore.ICustomerServiceCore
     {
         
         /// <summary>
@@ -108,7 +108,7 @@ namespace CustomerServiceCoreProxy
         {
         }
         
-        public System.Threading.Tasks.Task<CustomerServiceCoreProxy.CustomerCore[]> CustomerListAsync(CustomerServiceCoreProxy.CustomerCore customer)
+        public System.Threading.Tasks.Task<Customer.LibraryCore.ServiceReferenceCore.CustomerCore[]> CustomerListAsync(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customer)
         {
             return base.Channel.CustomerListAsync(customer);
         }

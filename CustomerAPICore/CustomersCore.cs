@@ -1,39 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 using System.ServiceModel;
-using ServiceReference;
-using Microsoft.Extensions.Configuration;
-using System.Diagnostics.CodeAnalysis;
-using CustomerServiceCoreProxy;
 
 namespace Customer.APICore
 {
-    public class CustomerCores
+    public class CustomersCore
     {
         private IConfiguration _customerServiceConfiguration;
         private BasicHttpBinding _basicHttpBinding;      
         private EndpointAddress _customerServiceCoreEndpointAddress;
-        private CustomerServiceCoreProxy.CustomerServiceCoreClient _CustomerServiceCoreClient;
+        private Customer.LibraryCore.ServiceReferenceCore.CustomerServiceCoreClient _CustomerServiceCoreClient;
 
-        public CustomerCores(IConfiguration configuration)
+        public CustomersCore(IConfiguration configuration)
         {
             _customerServiceConfiguration = configuration;            
             var customerServiceSectionCore = _customerServiceConfiguration["CustomerServiceClientCore"];            
             _customerServiceCoreEndpointAddress = new EndpointAddress(customerServiceSectionCore);
             _basicHttpBinding = new BasicHttpBinding();
-            _CustomerServiceCoreClient = new CustomerServiceCoreProxy.CustomerServiceCoreClient(_basicHttpBinding, _customerServiceCoreEndpointAddress);            
+            _CustomerServiceCoreClient = new Customer.LibraryCore.ServiceReferenceCore.CustomerServiceCoreClient(_basicHttpBinding, _customerServiceCoreEndpointAddress);            
         }
        
-        public ApiCoreResult<List<CustomerServiceCoreProxy.CustomerCore>> GetCustomersCore(CustomerServiceCoreProxy.CustomerCore customerRequest)
+        public ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>> GetCustomersCore(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customerRequest)
         {
-            ApiCoreResult<List<CustomerServiceCoreProxy.CustomerCore>> result = new ApiCoreResult<List<CustomerServiceCoreProxy.CustomerCore>>();
+            ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>> result = new ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>>();
 
             //https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
 
-            var customers = new List<CustomerServiceCoreProxy.CustomerCore>();
+            var customers = new List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>();
 
 
             //var endpoint = new EndpointAddress("http://localhost:62341/Customers.svc");
@@ -42,11 +34,11 @@ namespace Customer.APICore
             var endpoint = new EndpointAddress(section);
             var binding = new BasicHttpBinding();
 
-            using (var client = new CustomerServiceCoreProxy.CustomerServiceCoreClient(binding, endpoint))
+            using (var client = new Customer.LibraryCore.ServiceReferenceCore.CustomerServiceCoreClient(binding, endpoint))
             {
 
                 customers = client.CustomerListAsync(
-                new CustomerServiceCoreProxy.CustomerCore()
+                new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                 {
                     CustomerName = customerRequest.CustomerName == null ? "" : customerRequest.CustomerName
                 }
@@ -57,7 +49,7 @@ namespace Customer.APICore
         }
 
         //Delegate example
-        public ApiCoreResult<List<CustomerServiceCoreProxy.CustomerCore>> GetCustomersGeneric(CustomerServiceCoreProxy.CustomerCore customerRequest)
+        public ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>> GetCustomersGeneric(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customerRequest)
         => Invoke(customerRequest, () => _CustomerServiceCoreClient.CustomerListAsync(customerRequest).Result.ToList());
 
 

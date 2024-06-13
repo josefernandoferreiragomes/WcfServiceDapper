@@ -1,7 +1,5 @@
 using Customer.APICore;
 using Microsoft.AspNetCore.Mvc;
-using ServiceReference;
-using CustomerServiceCoreProxy;
 
 namespace CustomerWebAPICore.Controllers
 {
@@ -20,12 +18,12 @@ namespace CustomerWebAPICore.Controllers
         }       
 
         [HttpGet(Name = "CustomerCore")]
-        public IEnumerable<CustomerServiceCoreProxy.CustomerCore> Get(string? customerName)
+        public IEnumerable<Customer.LibraryCore.ServiceReferenceCore.CustomerCore> Get(string? customerName)
         {
-            List<CustomerServiceCoreProxy.CustomerCore> customers = new List<CustomerServiceCoreProxy.CustomerCore>();
+            List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore> customers = new List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>();
 
-            var customersResult = new CustomerCores(_configuration).GetCustomersCore(
-                new CustomerServiceCoreProxy.CustomerCore()
+            var customersResult = new CustomersCore(_configuration).GetCustomersCore(
+                new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                 {
                     CustomerName = customerName
                 }

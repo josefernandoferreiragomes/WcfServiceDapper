@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference
+namespace Customer.LibraryCore.ServiceReference
 {
     using System.Runtime.Serialization;
     
