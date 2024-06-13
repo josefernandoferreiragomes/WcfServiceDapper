@@ -1,23 +1,20 @@
 # Customer web site example (SQL Server, .Net Framework 4.8, .Net Core 8, Dapper, API, WebAPI)
 
-## TODO
-	Consume CoreWCF in both sites
-	Rename old WCF to deprecated
-	Summarize steps taken
-
-## Requirements
+## Features
 	WCF
 		4.8
 		Dapper
 	API
 		Core 8
 		4.8 upgraded to Standard 2.0 !!! Deprecated
-		Delegate
+		Delegate / Generic Function
 	Site
 		4.8
 	Site
 		Core 8
 		Dependency Injection
+
+## Sources
 
 ### Connect to SQL Server Database with Dapper and DapperExtensions
 	https://www.learndapper.com/database-providers
@@ -53,47 +50,6 @@
 	Proxy:
 	cmd admin, on LibraryCore folder:
 	dotnet-svcutil http://localhost:5153/CustomerServiceCore.svc  --namespace "*,CustomerServiceCoreProxy" --outputFile "CustomerServiceCoreProxy.cs"
-
-### Further reading
-	WCFClient details
-	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
-	https://www.mytechramblings.com/posts/modernize-wcf-legacy-app-using-corewcf/
-	https://medium.com/@palchouhan/upgrading-a-wcf-service-to-net-6-with-corewcf-cf3a4f569b61
-	https://aws.amazon.com/blogs/modernizing-with-aws/wcf-service-to-corewcf/
-	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
-
-### Generate WCF Proxy (Framework)
-#### !!! Deprecated !!!
-	Start WCF Service
-	Open VS Dev Command Prompt
-	Navigate to library folder
-	write the command:
-	svcutil http://localhost:62341/Customers.svc /out:CustomersProxy.cs
-
-	References:
-	https://www.codeproject.com/Articles/786601/Ways-to-generate-proxy-for-WCF-Service
-
-### Migrate to .NET Standard 2.0
-#### !!! Does not solve the problem !!! Deprecated
-	https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-migrate-from-dotnet-framework-to-dotnet-standard
-
-	Install Extension .NET Upgrade Assistant
-	https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer
-	https://developercommunity.visualstudio.com/t/the-net-portability-analyzer-missing-vs2022net6-su/1674326
-
-	API Standard 2.0
-	install System.ServiceModel.Primitives 4.4.4
-
-### Use .net Standard 2.0 in CustomerSiteCore
-#### !!! Does not solve the problem !!! Deprecated
-	https://learn.microsoft.com/en-us/dotnet/core/porting/
-	Install-Package System.Private.ServiceModel -Version 4.7.0
-	https://stackoverflow.com/questions/73316508/error-platformnotsupportedexception-configuration-files-are-not-supported-or-h
-	
-	https://github.com/dotnet/standard/issues/781
-
-### Free public APIs for testing purposes
-	https://apipheny.io/free-api/
 
 ## Project steps
 ### 1. Create examples of: 
@@ -141,3 +97,45 @@
 	  nswag openapi2csclient /input:http://localhost:5015/swagger/v1/swagger.json /classname:ClientApiClient /namespace:Customer.Library /output:ClientApiClient.cs
 	 Problems related to .net framework nswag version:
 	 https://developercommunity.visualstudio.com/t/httpclient-not-smart-about-combining-baseaddress-w/1592519
+
+### Generate WCF Proxy (Framework)
+#### !!! Deprecated !!!
+	Start WCF Service
+	Open VS Dev Command Prompt
+	Navigate to library folder
+	write the command:
+	svcutil http://localhost:62341/Customers.svc /out:CustomersProxy.cs
+
+	References:
+	https://www.codeproject.com/Articles/786601/Ways-to-generate-proxy-for-WCF-Service
+
+### Migrate to .NET Standard 2.0
+#### !!! Does not solve the problem !!! Deprecated
+	https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-migrate-from-dotnet-framework-to-dotnet-standard
+
+	Install Extension .NET Upgrade Assistant
+	https://marketplace.visualstudio.com/items?itemName=ConnieYau.NETPortabilityAnalyzer
+	https://developercommunity.visualstudio.com/t/the-net-portability-analyzer-missing-vs2022net6-su/1674326
+
+	API Standard 2.0
+	install System.ServiceModel.Primitives 4.4.4
+
+### Use .net Standard 2.0 in CustomerSiteCore
+#### !!! Does not solve the problem !!! Deprecated
+	https://learn.microsoft.com/en-us/dotnet/core/porting/
+	Install-Package System.Private.ServiceModel -Version 4.7.0
+	https://stackoverflow.com/questions/73316508/error-platformnotsupportedexception-configuration-files-are-not-supported-or-h
+	
+	https://github.com/dotnet/standard/issues/781
+
+### Further reading
+	WCFClient details
+	https://devblogs.microsoft.com/dotnet/wcf-client-60-has-been-released/
+	https://www.mytechramblings.com/posts/modernize-wcf-legacy-app-using-corewcf/
+	https://medium.com/@palchouhan/upgrading-a-wcf-service-to-net-6-with-corewcf-cf3a4f569b61
+	https://aws.amazon.com/blogs/modernizing-with-aws/wcf-service-to-corewcf/
+	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
+
+### Free public APIs for testing purposes
+	https://apipheny.io/free-api/
+
