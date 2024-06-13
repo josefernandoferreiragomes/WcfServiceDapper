@@ -23,13 +23,8 @@ namespace Customer.APICore
         public List<Customer.LibraryCore.ServiceReference.Customer> GetCustomers(Customer.LibraryCore.ServiceReference.Customer customerRequest)
         {
             List<Customer.LibraryCore.ServiceReference.Customer> result = new List<Customer.LibraryCore.ServiceReference.Customer>();
-
-            //https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
-
+           
             var customers = new List<Customer.LibraryCore.ServiceReference.Customer>();
-
-
-            //var endpoint = new EndpointAddress("http://localhost:62341/Customers.svc");
 
             var section = _customerServiceConfiguration["CustomerServiceClient"];
             var endpoint = new EndpointAddress(section);
@@ -95,8 +90,6 @@ namespace Customer.APICore
 
                 var serviceResult = method();
 
-                //MapToApiResult(serviceResult, result);
-
                 if (serviceResult == null)
                 {
                     result.Errors.Add("Error");
@@ -118,6 +111,5 @@ namespace Customer.APICore
             return result;
         }
 
-        //MapToApiResult(List<Customer>)
     }
 }

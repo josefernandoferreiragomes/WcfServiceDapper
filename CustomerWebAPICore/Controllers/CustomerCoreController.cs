@@ -8,12 +8,13 @@ namespace CustomerWebAPICore.Controllers
     public class CustomerCoreController : ControllerBase
     {        
         private readonly ILogger<CustomerController> _logger;
+        private ICustomersCore _customersCore;
+        //private readonly IConfiguration _configuration;      
 
-        private readonly IConfiguration _configuration;      
-
-        public CustomerCoreController(ILogger<CustomerController> logger, IConfiguration configuration)
+        public CustomerCoreController(ICustomersCore customersCore, ILogger<CustomerController> logger) // IConfiguration configuration)
         {
-            _configuration = configuration;
+            this._customersCore = customersCore;
+            //_configuration = configuration;
             _logger = logger;
         }       
 
@@ -22,7 +23,7 @@ namespace CustomerWebAPICore.Controllers
         {
             List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore> customers = new List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>();
 
-            var customersResult = new CustomersCore(_configuration).GetCustomersCore(
+            var customersResult = _customersCore.GetCustomersCore(
                 new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                 {
                     CustomerName = customerName

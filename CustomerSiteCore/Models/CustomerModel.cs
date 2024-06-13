@@ -5,14 +5,14 @@ namespace CustomerSiteCore.Models
 {
     public class CustomerModel
     {
-        private readonly IConfiguration Configuration;
+        private ICustomersCore _customersCore;
         public string CustomerName { get; set; }
 
         private List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>? _customerList;
 
-        public CustomerModel(IConfiguration configuration)
+        public CustomerModel(ICustomersCore customersCore)
         {
-            Configuration = configuration;
+            this._customersCore = customersCore;
         }
 
         public List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore> CustomerList
@@ -22,7 +22,7 @@ namespace CustomerSiteCore.Models
                 if (_customerList == null)
                 {
                     
-                    _customerList = new Customer.APICore.CustomersCore(Configuration).GetCustomersCore(
+                    _customerList = _customersCore.GetCustomersCoreGeneric(
                         new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                         {
                             CustomerName = CustomerName

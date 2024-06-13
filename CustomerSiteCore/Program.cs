@@ -1,6 +1,11 @@
+using Customer.APICore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<ICustomersCoreRepository, CustomersCoreRepository>();
+builder.Services.AddSingleton<ICustomersCore, CustomersCore>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

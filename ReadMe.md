@@ -17,6 +17,7 @@
 		4.8
 	Site
 		Core 8
+		Dependency Injection
 
 ### Connect to SQL Server Database with Dapper and DapperExtensions
 	https://www.learndapper.com/database-providers
