@@ -5,6 +5,7 @@ namespace Customer.APICore
 {
     public class CustomersCore : ICustomersCore
     {
+        //using IoC everywhere
         private ICustomersCoreRepository _customersCoreRepository;
         public CustomersCore(ICustomersCoreRepository customersCoreRepository)
         {
@@ -42,8 +43,6 @@ namespace Customer.APICore
 
                 var serviceResult = method();
 
-                //MapToApiResult(serviceResult, result);
-
                 if (serviceResult == null)
                 {
                     result.Errors.Add("Error");
@@ -65,6 +64,5 @@ namespace Customer.APICore
             return result;
         }
 
-        //MapToApiResult(List<Customer>)
     }
 }

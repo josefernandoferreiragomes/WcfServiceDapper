@@ -22,12 +22,12 @@ namespace CustomerWebAPICore.Controllers
         {
             List<Customer.LibraryCore.ServiceReference.Customer> customers = new List<Customer.LibraryCore.ServiceReference.Customer>();
 
-            var customersResult = new Customers(_configuration).GetCustomersGeneric(
+            var customersResult = new Customers(_configuration).GetCustomers(
                 new Customer.LibraryCore.ServiceReference.Customer()
                 {
                     CustomerName = customerName
                 }
-            ).Result;
+            );
             if( customersResult != null && customersResult!=null)
             {
                 customers = customersResult;

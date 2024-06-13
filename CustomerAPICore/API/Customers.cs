@@ -4,6 +4,7 @@ using System.ServiceModel;
 
 namespace Customer.APICore
 {
+
     public class Customers
     {
         private IConfiguration _customerServiceConfiguration;
@@ -11,13 +12,17 @@ namespace Customer.APICore
         private EndpointAddress _customerServiceEndpointAddress;
         private Customer.LibraryCore.ServiceReference.CustomersClient _serviceClient;
 
+        //using essential IoC, only for IConfiguration (default)
         public Customers(IConfiguration configuration)
         {
             _customerServiceConfiguration = configuration;
-            var customerServiceSection = _customerServiceConfiguration["CustomerServiceClient"];            
-            _customerServiceEndpointAddress = new EndpointAddress(customerServiceSection);            
-            _basicHttpBinding = new BasicHttpBinding();            
-            _serviceClient = new Customer.LibraryCore.ServiceReference.CustomersClient(_basicHttpBinding, _customerServiceEndpointAddress);
+        }
+
+        private void SetUpServiceClient()
+        {
+            var customerServiceSection = _customerServiceConfiguration["CustomerServiceClient"];
+            _customerServiceEndpointAddress = new EndpointAddress(customerServiceSection);
+            _basicHttpBinding = new BasicHttpBinding();
         }
 
         public List<Customer.LibraryCore.ServiceReference.Customer> GetCustomers(Customer.LibraryCore.ServiceReference.Customer customerRequest)
@@ -26,11 +31,9 @@ namespace Customer.APICore
            
             var customers = new List<Customer.LibraryCore.ServiceReference.Customer>();
 
-            var section = _customerServiceConfiguration["CustomerServiceClient"];
-            var endpoint = new EndpointAddress(section);
-            var binding = new BasicHttpBinding();
-
-            using (var client = new CustomersClient(binding, endpoint))
+            SetUpServiceClient();
+            
+            using (var client = new CustomersClient(_basicHttpBinding, _customerServiceEndpointAddress))
             {
 
                 customers = client.CustomerListAsync(
@@ -48,18 +51,9 @@ namespace Customer.APICore
         {
             ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>> result = new ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>>();
 
-            //https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
-
             var customers = new List<Customer.LibraryCore.ServiceReference.Customer>();
 
-
-            //var endpoint = new EndpointAddress("http://localhost:62341/Customers.svc");
-
-            var section = _customerServiceConfiguration["CustomerServiceClient"];
-            var endpoint = new EndpointAddress(section);
-            var binding = new BasicHttpBinding();
-
-            using (var client = new CustomersClient(binding, endpoint))
+            using (var client = new CustomersClient(_basicHttpBinding, _customerServiceEndpointAddress))
             {
 
                 customers = client.CustomerListAsync(
@@ -73,43 +67,5 @@ namespace Customer.APICore
             return result;
         }
         
-        //Delegate example
-        public ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>> GetCustomersGeneric(Customer.LibraryCore.ServiceReference.Customer customerRequest)
-        => Invoke(customerRequest, () => _serviceClient.CustomerListAsync(customerRequest).Result.ToList());
-
-
-        private ApiCoreResult<R> Invoke<R, I>(I input, Func<R> method)
-        {
-            var serviceName = method.Method.Name;
-            var result = new ApiCoreResult<R>();
-            result.ServiceName = serviceName;
-
-            try
-            {
-                result.RequestMessage = input;
-
-                var serviceResult = method();
-
-                if (serviceResult == null)
-                {
-                    result.Errors.Add("Error");
-                }
-                else
-                {
-                    result.Result = serviceResult;
-                }
-
-            }
-            catch (Exception exp)
-            {
-                result.Errors.Add(exp.Message);
-            }
-            finally
-            {
-                
-            }
-            return result;
-        }
-
     }
 }
