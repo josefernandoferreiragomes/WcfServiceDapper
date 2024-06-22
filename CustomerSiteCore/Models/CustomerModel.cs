@@ -22,7 +22,7 @@ namespace CustomerSiteCore.Models
                 if (_customerList == null)
                 {
                     
-                    _customerList = _customersCore.GetCustomersCoreGeneric(
+                    _customerList = _customersCore.GetCustomersCoreGenericWithDelegate(
                         new Customer.LibraryCore.ServiceReferenceCore.CustomerCore()
                         {
                             CustomerName = CustomerName

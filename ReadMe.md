@@ -135,6 +135,8 @@
 	https://medium.com/@palchouhan/upgrading-a-wcf-service-to-net-6-with-corewcf-cf3a4f569b61
 	https://aws.amazon.com/blogs/modernizing-with-aws/wcf-service-to-corewcf/
 	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
+	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/how-to-declare-instantiate-and-use-a-delegate?source=recommendations
+	https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-delegates
 
 ### Free public APIs for testing purposes
 	https://apipheny.io/free-api/

@@ -11,6 +11,6 @@ namespace Customer.APICore
 
 
         //Delegate example
-        ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>> GetCustomersCoreGeneric(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customerRequest);
+        ApiCoreResult<List<Customer.LibraryCore.ServiceReferenceCore.CustomerCore>> GetCustomersCoreGenericWithDelegate(Customer.LibraryCore.ServiceReferenceCore.CustomerCore customerRequest);
     }        
 }
