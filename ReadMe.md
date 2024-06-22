@@ -7,7 +7,9 @@
 	API
 		Core 8
 		4.8 upgraded to Standard 2.0 !!! Deprecated
-		Delegate / Generic Function
+		Delegate 
+		Func
+		Generics
 	Site
 		4.8
 	Site
