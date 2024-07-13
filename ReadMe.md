@@ -27,7 +27,7 @@
 ## Project setup	
 
 ### Make sure to have installed .NET 4.8 and .NET 8
-### The startup projects should be
+### The startup projects for running with ctrl+F5 should be:
 ![StartupProjects](StartupProjects.png)
 ### It should run out right of the box
 
