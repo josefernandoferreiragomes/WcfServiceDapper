@@ -8,13 +8,11 @@ namespace CustomerWebAPICore.Controllers
     public class CustomerCoreController : ControllerBase
     {        
         private readonly ILogger<CustomerController> _logger;
-        private ICustomersCore _customersCore;
-        //private readonly IConfiguration _configuration;      
+        private ICustomersCore _customersCore;      
 
-        public CustomerCoreController(ICustomersCore customersCore, ILogger<CustomerController> logger) // IConfiguration configuration)
+        public CustomerCoreController(ICustomersCore customersCore, ILogger<CustomerController> logger)
         {
-            this._customersCore = customersCore;
-            //_configuration = configuration;
+            this._customersCore = customersCore;            
             _logger = logger;
         }       
 

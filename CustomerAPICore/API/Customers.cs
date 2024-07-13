@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace Customer.APICore
 {
-
+    
     public class Customers
     {
         private IConfiguration _customerServiceConfiguration;
@@ -47,7 +47,12 @@ namespace Customer.APICore
             return result;
         }
 
-        public ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>> GetCustomersCoreDeprecated(Customer.LibraryCore.ServiceReference.Customer customerRequest)
+        /// <summary>
+        /// Deprecated version on GetCustomersCore
+        /// </summary>
+        /// <param name="customerRequest"></param>
+        /// <returns></returns>
+        public ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>> GetCustomersCore(Customer.LibraryCore.ServiceReference.Customer customerRequest)
         {
             ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>> result = new ApiCoreResult<List<Customer.LibraryCore.ServiceReference.Customer>>();
 

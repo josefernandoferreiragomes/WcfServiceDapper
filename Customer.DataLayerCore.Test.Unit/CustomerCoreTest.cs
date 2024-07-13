@@ -3,6 +3,11 @@ using Customer.DataLayerCore;
 
 namespace Customer.DataLayerCore.Test.Unit
 {
+    /// <summary>
+    /// Test client related methods
+    /// The tests are written using Gherkin specification
+    /// And are organised in regions comprising Arrange, Act, Assert
+    /// </summary>
     public class CustomerCoreTest
     {
         // to have the same Configuration object as in Startup
@@ -27,16 +32,24 @@ namespace Customer.DataLayerCore.Test.Unit
 
 
         [Test]
-        public void TestHasCustomers()
+        public void Given_CustomersRepository_When_CustomersAreRequested_Then_CustomersAreReturned()
         {
+            #region Arrange
             CustomerCore customerCore = new CustomerCore()
             {
                 CustomerName = "a"
             };
+            #endregion
+
+            #region Act
             var customers = _customers.GetDataFromDatabaseWithDapper(customerCore);
+            #endregion
+
+            #region Assert
             Assert.IsNotNull(customers);
             Assert.IsTrue(customers.Any());
             Assert.Pass();
+            #endregion
         }
     }
 }
