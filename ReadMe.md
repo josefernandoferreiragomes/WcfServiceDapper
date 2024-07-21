@@ -1,57 +1,38 @@
-# Customer web site example (SQL Server, .Net Framework 4.8, .Net Core 8, Dapper, API, WebAPI)
+# PoC migration of .NET 4.8 WCF, API and WebSite to .NET 8
+
+### Simplified Customer web site example (SQL Server, .Net Framework 4.8, .Net Core 8, Dapper, API, WebAPI)
 
 ## Features
-	WCF
-		4.8
+	Legacy WCF
+		.NET 4.8
 		Dapper
+	WCF
+		.NET 8
+		Dapper
+	Library
+		.NET 8
+		.NET 4.8
 	API
-		Core 8
-		4.8 upgraded to Standard 2.0 !!! Deprecated
-		Delegate / Generic Function
+		.NET 8
+		.NET 4.8 upgraded to .NET Standard 2.0 !!! Deprecated
+		Delegate
+		Func
+		Generics
+	Legacy Site
+		.NET 4.8
 	Site
-		4.8
-	Site
-		Core 8
+		.NET 8
 		Dependency Injection
 
-## Sources
+## Project setup	
 
-### Connect to SQL Server Database with Dapper and DapperExtensions
-	https://www.learndapper.com/database-providers
-	https://github.com/tmsmith/Dapper-Extensions
+### Make sure to have installed .NET 4.8 and .NET 8
+### The startup projects for running with ctrl+F5 should be:
+![StartupProjects](StartupProjects.png)
+### It should run out right of the box
 
-### Generate WCF Proxy Core
-	install dotnet-svcutil:
-	dotnet tool install --global dotnet-svcutil
+## Walkthrough of the migration made from .NET 4.8 to .NET 8
 
-	execute the command in project context and located in project folder
-	dotnet-svcutil http://localhost:62341/Customers.svc?wsdl --outputFile CustomersProxyCore.cs	
-
-	https://learn.microsoft.com/en-us/dotnet/core/additional-tools/dotnet-svcutil-guide?tabs=dotnetsvcutil2x
-
-	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
-
-### Expose Web API in Core 8 to be consumed by Framework Web Site
-	If you can not convert your Framework to net Core and you need to call the Core code, 
-	then host the net Core as a webapi, and call via httpclient() from the Framework code
-	
-	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
-
-### Read appsettings.json
-	https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
-	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0	
-
-### CoreWCF
-	https://github.com/CoreWCF/samples/tree/main/Scenarios/Logging-and-Dependency-Injection
-	https://github.com/CoreWCF/CoreWCF/blob/main/Documentation/Walkthrough.md
-	https://devblogs.microsoft.com/dotnet/corewcf-1-1-0-and-project-templates/
-	PM> dotnet new --install CoreWCF.Templates
-	https://learn.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-wcf
-	Proxy:
-	cmd admin, on LibraryCore folder:
-	dotnet-svcutil http://localhost:5153/CustomerServiceCore.svc  --namespace "*,CustomerServiceCoreProxy" --outputFile "CustomerServiceCoreProxy.cs"
-
-## Project steps
 ### 1. Create examples of: 
 	Customers Database, in SQLLocalDB 
 	DAL, in .net framework  
@@ -140,4 +121,41 @@
 
 ### Free public APIs for testing purposes
 	https://apipheny.io/free-api/
+
+## Sources
+
+### Connect to SQL Server Database with Dapper and DapperExtensions
+	https://www.learndapper.com/database-providers
+	https://github.com/tmsmith/Dapper-Extensions
+
+### Generate WCF Proxy Core
+	install dotnet-svcutil:
+	dotnet tool install --global dotnet-svcutil
+
+	execute the command in project context and located in project folder
+	dotnet-svcutil http://localhost:62341/Customers.svc?wsdl --outputFile CustomersProxyCore.cs	
+
+	https://learn.microsoft.com/en-us/dotnet/core/additional-tools/dotnet-svcutil-guide?tabs=dotnetsvcutil2x
+
+	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
+
+### Expose Web API in Core 8 to be consumed by Framework Web Site
+	If you can not convert your Framework to net Core and you need to call the Core code, 
+	then host the net Core as a webapi, and call via httpclient() from the Framework code
+	
+	https://learn.microsoft.com/en-us/answers/questions/1301834/how-to-use-net-6-0-library-in-net-framework-4-7-2
+
+### Read appsettings.json
+	https://www.c-sharpcorner.com/article/reading-values-from-appsettings-json-in-asp-net-core/
+	https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0	
+
+### CoreWCF
+	https://github.com/CoreWCF/samples/tree/main/Scenarios/Logging-and-Dependency-Injection
+	https://github.com/CoreWCF/CoreWCF/blob/main/Documentation/Walkthrough.md
+	https://devblogs.microsoft.com/dotnet/corewcf-1-1-0-and-project-templates/
+	PM> dotnet new --install CoreWCF.Templates
+	https://learn.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-wcf
+	Proxy:
+	cmd admin, on LibraryCore folder:
+	dotnet-svcutil http://localhost:5153/CustomerServiceCore.svc  --namespace "*,CustomerServiceCoreProxy" --outputFile "CustomerServiceCoreProxy.cs"
 

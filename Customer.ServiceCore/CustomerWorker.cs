@@ -15,12 +15,12 @@ namespace Customer.DataLayerCore
         public List<CustomerCore> GetDataFromDatabaseWithDapper(CustomerCore customer)
         {
             List<CustomerCore> result = new List<CustomerCore>();
-            // using Dapper;
+            
             var connectionString = _configuration["CustomersDB"];
+            
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
-            {
-                // Create a query that retrieves all books with an author name of "John Smith"    
+            {                
                 //TO BE REFACTURED WITH PATTERN AND SECURITY FEATURES
                 var sql = $"SELECT TOP 17 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
 
@@ -37,24 +37,13 @@ namespace Customer.DataLayerCore
         public List<CustomerCore> GetDataFromDatabaseWithDapperNative(CustomerCore customer)
         {
             List<CustomerCore> result = new List<CustomerCore>();
-            // using Dapper;
+            
             var connectionString = _configuration["CustomersDB"];
             // Connect to the database 
             using (var connection = new SqlConnection(connectionString))
-            {
-                // Create a query that retrieves all books with an author name of "John Smith"    
-                //TO BE REFACTURED WITH PATTERN AND SECURITY FEATURES
-                //var sql = $"SELECT TOP 17 * FROM Customers WHERE CustomerName LIKE '%'+@customerName+'%' ";
-
-                // Use the Query method to execute the query and return a list of objects    
-                result = connection.GetList<CustomerCore>(customer).ToList();
-                //.Query<Customer>(
-                //    sql,
-                //    new { customerName = customer.CustomerName }
-                //    ).ToList();
-
-
-
+            {                
+                // Use the GetList method to return a list of objects
+                result = connection.GetList<CustomerCore>(customer).ToList();                
             }
             return result;
 
